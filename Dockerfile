@@ -1,5 +1,5 @@
-# Image taken from https://github.com/turlucode/ros-docker-gui
-FROM osrf/ros:humble-desktop-full-jammy
+# Image: https://hub.docker.com/layers/arm64v8/ros/humble-perception/images/sha256-18f05b82978b803530614f9058bde6ffa0832f21388debf30c2186d9944c0c63?context=explore
+FROM arm64v8/ros:humble-perception 
 
 RUN apt-get update
 
