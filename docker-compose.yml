@@ -10,6 +10,8 @@ services:
       #Time
       - /etc/timezone:/etc/timezone:rw
       - /etc/localtime:/etc/localtime:rw
+      # X11
+      - $HOME/.Xauthority:/root/.Xauthority
       #ros-workspaces
       - ./container_root/:/root/
       - ./orb_slam3_ros2_wrapper/:/root/colcon_ws/src/orb_slam3_ros2_wrapper/
