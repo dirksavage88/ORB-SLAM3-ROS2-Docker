@@ -23,8 +23,8 @@ RUN apt-get install -y \
     libeigen3-dev \
     apt-transport-https \
     ca-certificates\
-    software-properties-common
-
+    software-properties-common \
+    libcanberra-gtk-module
 RUN apt update
 
 
