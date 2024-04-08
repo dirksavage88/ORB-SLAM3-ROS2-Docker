@@ -8,6 +8,8 @@ This repository contains a dockerized comprehensive wrapper for ORB-SLAM3 on ROS
 
 # Steps to use this wrapper
 
+IMPORTANT: The embedded Jetson boards run out of ram when building with the flags "make -j6". Removing the -j6 will work but result in longer build times 
+
 ## 1. Clone this repository
 
 1. ```git clone https://github.com/suchetanrs/ORB-SLAM3-ROS2-Docker```
@@ -32,7 +34,7 @@ sudo chmod +x container_root/shell_scripts/docker_install.sh
 ## 4. Running the container
 
 1. ```cd ORB-SLAM3-ROS2-Docker``` (ignore if you are already in the folder)
-2. ```sudo docker compose run orb_slam3_22_humble```
+2. ```sudo docker-compose run orb_slam3_22_humble```
 3. This should take you inside the container. Once you are inside, run the command ```xeyes``` and a pair of eyes should pop-up. If they do, x11 forwarding has correctly been setup on your computer.
 
 ## 5. Building the ORB-SLAM3 Wrapper
