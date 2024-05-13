@@ -34,30 +34,27 @@ sudo chmod +x container_root/shell_scripts/docker_install.sh
 ## 4. Running the container
 
 1. ```cd ORB-SLAM3-ROS2-Docker``` (ignore if you are already in the folder)
-2. ```sudo docker-compose run orb_slam3_22_humble```
-3. This should take you inside the container. Once you are inside, run the command ```xeyes``` and a pair of eyes should pop-up. If they do, x11 forwarding has correctly been setup on your computer.
+2. ```docker run -ti orb-slam-3-ros2 --net=host /bin/bash```
 
 ## 5. Building the ORB-SLAM3 Wrapper
 
+The first step is to modify the CmakeList in ORB_SLAM3_ROS2, OpenCV must be added to the target dependencies for each executable. Also set the paths for ORB SLAM3 install directory and python modules path in CMakeModules/* and CMakeList respectively.
+
 Launch the container using steps in (4).
 ```bash
-cd /root/colcon_ws/
+cd /home/colcon_ws/
 colcon build --symlink-install
 source install/setup.bash
 ```
 
 ## Launching ORB-SLAM3
+Play a ros2 bag and remap to '/image' or change the orb slam input image topic via parameter.
 
-Launch the container using steps in (4).
-If you are inside the container, run the following:
-
-1. ```ros2 launch orb_slam3_ros2_wrapper unirobot.launch.py```
-3. You can adjust the initial co-ordinates of the robot along with its namespace in the ```unirobot.launch.py``` file.
+Example for monocular
+```ros2 run orbslam3 mono /home/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt /home/colcon_ws/src/ORB_SLAM3_ROS2/config/monocular/TUM1.yaml
+```
 
 ## Important notes
 
-ORB-SLAM3 is launched from ```orb_slam3_docker_20_humble/orb_slam3_ros2_wrapper/launch/rgbd.launch.py``` which inturn is launched from ```orb_slam3_docker_20_humble/orb_slam3_ros2_wrapper/launch/unirobot.launch.py```
-
-Currently the ```rgbd.launch.py``` launch file defaults to ```orb_slam3_ros2_wrapper/params/scout_v2_rgbd.yaml```. You can modify this with your own parameter file in case you wish to use your own camera.
 
 The very initial versions of this code were derived from [thien94/orb_slam3_ros_wrapper](https://github.com/thien94/orb_slam3_ros_wrapper) and [zang9/ORB_SLAM3_ROS2](https://github.com/zang09/ORB_SLAM3_ROS2)
