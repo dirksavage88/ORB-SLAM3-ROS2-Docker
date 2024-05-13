@@ -2,8 +2,6 @@
 
 This repository contains a dockerized comprehensive wrapper for ORB-SLAM3 on ROS 2 Humble for Ubuntu 22.04.
 
-# Demo GIF
-
 ![ORBSLAM3-GIF](orbslam3.gif)
 
 # Steps to use this wrapper
@@ -12,7 +10,7 @@ IMPORTANT: The embedded Jetson boards run out of ram when building with the flag
 
 ## 1. Clone this repository
 
-1. ```git clone https://github.com/suchetanrs/ORB-SLAM3-ROS2-Docker```
+1. ```git clone https://github.com/dirksavage88/ORB-SLAM3-ROS2-Docker.git```
 2. ```cd ORB-SLAM3-ROS2-Docker```
 3. ```git submodule update --init --recursive --remote```
 
@@ -48,11 +46,12 @@ source install/setup.bash
 ```
 
 ## Launching ORB-SLAM3
-Play a ros2 bag and remap to '/image' or change the orb slam input image topic via parameter.
+Play a ros2 bag and remap to /image or change the orb slam input image topic via parameter.
 
 Example for monocular
-```ros2 run orbslam3 mono /home/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt /home/colcon_ws/src/ORB_SLAM3_ROS2/config/monocular/TUM1.yaml
-```
+
+```ros2 run orbslam3 mono /home/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt /home/colcon_ws/src/ORB_SLAM3_ROS2/config/monocular/TUM1.yaml```
+
 
 ## Important notes
 
