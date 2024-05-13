@@ -8,7 +8,7 @@ This repository contains a dockerized comprehensive wrapper for ORB-SLAM3 on ROS
 
 # Steps to use this wrapper
 
-IMPORTANT: The embedded Jetson boards run out of ram when building with the flags "make -j6". Removing the -j6 will work but result in longer build times 
+IMPORTANT: The embedded Jetson boards run out of ram when building with the flags "make -j6". Removing the -j6 will work but result in longer build times. There is the possibility to run out of swap as well on the older Jetson boards, for this you can attempt to increase the swap size (zram): https://jetsonhacks.com/2019/11/28/jetson-nano-even-more-swap/
 
 ## 1. Clone this repository
 
