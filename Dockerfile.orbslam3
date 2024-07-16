@@ -1,5 +1,5 @@
 # Image: https://hub.docker.com/layers/arm64v8/ros/humble-perception/images/sha256-18f05b82978b803530614f9058bde6ffa0832f21388debf30c2186d9944c0c63?context=explore
-FROM arm64v8/ros:humble-perception 
+FROM arm64v8/ros:humble-perception
 
 RUN apt-get update
 
@@ -52,11 +52,11 @@ RUN cd /tmp && git clone https://github.com/stevenlovegrove/Pangolin && \
 # Get ORB_SLAM3_ROS2 wrapper
 RUN cd /home/$USER && mkdir -p colcon_ws/src && \
     cd colcon_ws/src && \
-    git clone https://github.com/zang09/ORB_SLAM3_ROS2.git
+    git clone -b image_transport_edits https://github.com/dirksavage88/ORB_SLAM3_ROS2.git
 
 # Extract default vocab tar
 RUN cd /home/$USER/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary && \
-    tar -xf ORBvoc.txt.tar.gz 
+    tar -xf ORBvoc.txt.tar.gz
 
 # Build ORB-SLAM3 with its dependencies.
 RUN apt-get update && apt-get install ros-humble-pcl-ros tmux -y
