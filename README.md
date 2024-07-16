@@ -32,7 +32,7 @@ sudo chmod +x container_root/shell_scripts/docker_install.sh
 ## 4. Running the container
 
 1. ```cd ORB-SLAM3-ROS2-Docker``` (ignore if you are already in the folder)
-2. ```docker run -ti orb-slam-3-ros2 --net=host /bin/bash```
+2. ```sudo docker-compose run orb_slam3_ros2```
 
 ## 5. Building the ORB-SLAM3 Wrapper
 
@@ -41,6 +41,7 @@ The first step is to modify the CmakeList in ORB_SLAM3_ROS2, OpenCV must be adde
 Launch the container using steps in (4).
 ```bash
 cd /home/colcon_ws/
+. /opt/ros/humble/setup.bash
 colcon build --symlink-install
 source install/setup.bash
 ```
@@ -50,7 +51,12 @@ Play a ros2 bag and remap to /image or change the orb slam input image topic via
 
 Example for monocular
 
-```ros2 run orbslam3 mono /home/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt /home/colcon_ws/src/ORB_SLAM3_ROS2/config/monocular/TUM1.yaml```
+```ros2 run orbslam3 mono /home/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt /home/colcon_ws/src/ORB_SLAM3_ROS2/config/monocular/TUM1.yaml /home/colcon_ws/src/ORB_SLAM_ROS2/config/monocular/rpi.yaml --ros-args -p image:=/resize/image_raw```
+
+Example for Stereo
+```
+ros2 run orbslam3 stereo /home/colcon_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt /home/colcon_ws/src/ORB_SLAM3_ROS2/config/stereo/TUM-VI.yaml false
+```
 
 
 ## Important notes
