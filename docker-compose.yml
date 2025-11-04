@@ -11,7 +11,7 @@ services:
       - /etc/timezone:/etc/timezone:rw
       - /etc/localtime:/etc/localtime:rw
       #X11
-      - $HOME/.Xauthority:/root/.Xauthority
+      - /home/savagerobotsorin/.Xauthority:/root/.Xauthority:rw
     privileged: true
     network_mode: host
     ipc: host
@@ -20,3 +20,5 @@ services:
     environment:
       - DISPLAY
     entrypoint: /bin/bash
+    command: >
+      -c "source /opt/ros/humble/setup.bash && cd /home/colcon_ws && colcon build --symlink-install && source install/setup.bash"
